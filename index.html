@@ -37,7 +37,7 @@
             color: var(--dark-slate);
             overflow-x: hidden;
             animation: fadeInPage 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-            background-color: #F8FAFC; /* Base color */
+            background-color: #F8FAFC; 
         }
 
         @keyframes fadeInPage {
@@ -54,7 +54,6 @@
             padding: 14px 24px;
             transition: all 0.3s ease;
             
-            /* Floating Styles */
             position: fixed;
             top: 25px;
             left: 0;
@@ -108,9 +107,11 @@
 
         /* --- HERO SECTION --- */
         .hero-section {
-            padding: 210px 0 100px; /* Extra top padding for floating nav */
-            /* Gradient background pembeda */
-            background: linear-gradient(135deg, #e0e7ff 0%, #f1f5f9 100%);
+            padding: 210px 0 100px;
+            /* Background Off-White dengan CSS Texture (Dots) */
+            background-color: #FAFAFA;
+            background-image: radial-gradient(#CBD5E1 1.5px, transparent 1.5px);
+            background-size: 28px 28px;
             border-bottom: 1px solid #cbd5e1;
             position: relative;
         }
@@ -150,7 +151,6 @@
             margin-bottom: 30px;
         }
 
-        /* Container animasi icon tanpa card background */
         .hero-panel-right {
             height: 100%;
             min-height: 380px;
@@ -210,7 +210,6 @@
 
         /* --- CARDS KEUNGGULAN SECTION --- */
         #keunggulan {
-            /* Background slate yang solid untuk membedakan dengan Hero & Upload */
             background-color: #F1F5F9;
             border-bottom: 1px solid #e2e8f0;
         }
@@ -250,7 +249,6 @@
 
         /* --- FORM UPLOAD SECTION --- */
         #upload {
-            /* Background bernuansa biru muda/soft cyan */
             background: linear-gradient(to bottom, #F8FAFC, #E6F0FA);
         }
 
