@@ -243,65 +243,86 @@
             transform: translateY(-2px);
         }
 
-        /* --- FLOATING PREMIUM DASHBOARD PREVIEW --- */
-        .dashboard-window {
-            background: rgba(255, 255, 255, 0.45);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.6);
-            border-radius: 30px;
-            padding: 30px;
-            box-shadow: 0 30px 70px rgba(15, 23, 42, 0.08);
+        /* --- PREMIUM DOCUMENT ILLUSTRATION GRAPHIC (Replaces Dashboard) --- */
+        .document-graphic-container {
             position: relative;
             min-height: 440px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .glass-doc-main {
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            border-radius: 28px;
+            padding: 40px;
+            width: 320px;
+            box-shadow: 0 40px 80px rgba(15, 23, 42, 0.08);
+            text-align: center;
+            position: relative;
+            z-index: 2;
             animation: floatAnimation 6s ease-in-out infinite;
         }
 
-        /* Glassmorphism Floating Cards */
-        .floating-pane {
+        .glass-doc-main .doc-icon-wrapper {
+            width: 90px;
+            height: 90px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: #ffffff;
+            font-size: 42px;
+            border-radius: 22px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 24px;
+            box-shadow: 0 15px 35px rgba(15, 118, 110, 0.25);
+        }
+
+        .doc-dummy-line {
+            height: 6px;
+            background: #E2E8F0;
+            border-radius: 99px;
+            margin: 12px auto;
+        }
+
+        /* Sub floating document items */
+        .floating-sub-doc {
             position: absolute;
             background: rgba(255, 255, 255, 0.9);
             border: 1px solid var(--glass-border);
-            border-radius: 20px;
-            padding: 20px;
-            box-shadow: 0 15px 35px rgba(15, 23, 42, 0.04);
+            border-radius: 18px;
+            padding: 16px 20px;
+            box-shadow: 0 20px 40px rgba(15, 23, 42, 0.04);
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            z-index: 3;
             transition: all 0.3s ease;
         }
 
-        .floating-pane:hover {
-            transform: scale(1.03) translateY(-5px);
-            border-color: rgba(20, 184, 166, 0.3);
+        .floating-sub-doc:hover {
+            transform: scale(1.05);
+            border-color: var(--secondary);
         }
 
-        .pane-progress {
-            top: -20px; left: -30px; width: 190px;
+        .doc-badge-left {
+            top: 20px; left: 10px;
             animation: floatAnimation 5s ease-in-out infinite alternate;
         }
 
-        .pane-activity {
-            bottom: -25px; left: 20px; width: 280px;
-            animation: floatAnimation 7s ease-in-out infinite alternate;
-        }
-
-        .pane-chart {
-            top: 40px; right: -35px; width: 240px;
+        .doc-badge-right {
+            bottom: 40px; right: 10px;
             animation: floatAnimation 5.5s ease-in-out infinite alternate-reverse;
         }
 
-        /* Micro Components inside Dashboard Preview */
-        .progress-ring-circle {
-            stroke-dasharray: 251.2;
-            stroke-dashoffset: 50.2; /* 80% progress */
-            transform: rotate(-90deg);
-            transform-origin: 50px 50px;
-            transition: stroke-dashoffset 1s ease-out;
-        }
-
-        .mini-bar {
-            height: 8px; background: #E2E8F0; border-radius: 4px; overflow: hidden;
-        }
-        .mini-bar-fill {
-            height: 100%; background: var(--secondary); border-radius: 4px;
+        .circle-status-icon {
+            width: 36px; height: 36px;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 18px;
         }
 
         /* --- ASYMMETRIC STATS SECTION --- */
@@ -577,7 +598,7 @@
         @media (max-width: 768px) {
             .navbar { width: 95%; padding: 10px 16px; }
             .hero-title { font-size: 2.3rem; .hero-sub-text { font-size: 1.3rem; } }
-            .dashboard-window { display: none; }
+            .document-graphic-container { display: none; } /* Hide heavy graphics on mobile */
             .form-card { padding: 24px; }
         }
     </style>
@@ -626,45 +647,42 @@
                 </div>
                 
                 <div class="col-xl-6 col-lg-5">
-                    <div class="dashboard-window">
-                        <div class="floating-pane pane-progress">
-                            <div class="d-flex justify-content-between align-items-center mb-2">
-                                <span class="fw-bold small">Total Kepatuhan</span>
-                                <span class="badge bg-success-subtle text-success">96%</span>
-                            </div>
-                            <svg width="100" height="100" class="d-block mx-auto mt-2">
-                                <circle cx="50" cy="50" r="40" stroke="#E2E8F0" stroke-width="8" fill="transparent"/>
-                                <circle class="progress-ring-circle" cx="50" cy="50" r="40" stroke="var(--primary)" stroke-width="8" fill="transparent"/>
-                            </svg>
-                        </div>
-
-                        <div class="floating-pane pane-chart">
-                            <h6 class="fw-bold small mb-3">Statistik Pengiriman</h6>
-                            <div class="mb-2">
-                                <div class="d-flex justify-content-between small text-muted mb-1" style="font-size:11px;">
-                                    <span>Renstra Berkas</span><span>88%</span>
-                                </div>
-                                <div class="mini-bar"><div class="mini-bar-fill" style="width: 88%;"></div></div>
+                    <div class="document-graphic-container">
+                        
+                        <div class="floating-sub-doc doc-badge-left">
+                            <div class="circle-status-icon bg-warning-subtle text-warning">
+                                <i class="bi bi-file-earmark-lock2-fill"></i>
                             </div>
                             <div>
-                                <div class="d-flex justify-content-between small text-muted mb-1" style="font-size:11px;">
-                                    <span>LKjIP Utama</span><span>94%</span>
-                                </div>
-                                <div class="mini-bar"><div class="mini-bar-fill" style="width: 94%; background:var(--accent);"></div></div>
+                                <div class="fw-bold text-dark small">Data Terenkripsi</div>
+                                <span class="text-muted" style="font-size: 11px;">Keamanan Arsip</span>
                             </div>
                         </div>
 
-                        <div class="floating-pane pane-activity">
-                            <h6 class="fw-bold small mb-2"><i class="bi bi-clock-history text-secondary me-2"></i>Aktivitas Terkini</h6>
-                            <div class="d-flex gap-2 align-items-center py-1 border-bottom border-light">
-                                <div class="badge bg-light text-dark p-2 rounded"><i class="bi bi-file-earmark-code"></i></div>
-                                <div class="overflow-hidden"><p class="mb-0 small fw-bold text-truncate">Dinas Kesehatan.pdf</p><span class="text-muted" style="font-size:10px;">Baru Saja</span></div>
+                        <div class="glass-doc-main">
+                            <div class="doc-icon-wrapper">
+                                <i class="bi bi-file-earmark-text-fill"></i>
                             </div>
-                            <div class="d-flex gap-2 align-items-center pt-2">
-                                <div class="badge bg-light text-dark p-2 rounded"><i class="bi bi-file-earmark-code"></i></div>
-                                <div class="overflow-hidden"><p class="mb-0 small fw-bold text-truncate">Dinas Pertanian.xlsx</p><span class="text-muted" style="font-size:10px;">2 Menit Lalu</span></div>
+                            <h5 class="fw-bold text-dark mb-1">LAKIP_Utama.pdf</h5>
+                            <span class="text-muted small">Validasi Struktur Otomatis</span>
+                            
+                            <div class="mt-4 pt-2">
+                                <div class="doc-dummy-line" style="width: 85%;"></div>
+                                <div class="doc-dummy-line" style="width: 60%;"></div>
+                                <div class="doc-dummy-line" style="width: 75%;"></div>
                             </div>
                         </div>
+
+                        <div class="floating-sub-doc doc-badge-right">
+                            <div class="circle-status-icon bg-success-subtle text-success">
+                                <i class="bi bi-shield-fill-check"></i>
+                            </div>
+                            <div>
+                                <div class="fw-bold text-dark small">Arsip Tervalidasi</div>
+                                <span class="text-muted" style="font-size: 11px;">Integrasi LAKIP</span>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </div>
