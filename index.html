@@ -3,498 +3,1381 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="SILAKIP Kabupaten Malaka - layanan pengumpulan dokumen akuntabilitas kinerja perangkat daerah.">
     <title>SILAKIP - Kabupaten Malaka</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
+
     <style>
-        /* --- Variabel Warna & Tema --- */
         :root {
-            --primary-dark: #1E3A8A; 
-            --primary-light: #3B82F6; 
-            --bg-light: #F9FAFB; 
-            --bg-gray: #F3F4F6; 
-            --text-main: #1F2937; 
-            --text-muted: #4B5563; 
-            --white: #FFFFFF;
+            --ink: #082f3a;
+            --ink-soft: #274d56;
+            --teal: #218f9d;
+            --teal-dark: #0f7180;
+            --teal-pale: #dff0f2;
+            --mist: #f1f7f8;
+            --surface: #ffffff;
+            --line: #d8e6e8;
+            --line-strong: #bfd2d6;
+            --muted: #667d83;
+            --shadow: 0 22px 60px rgba(8, 47, 58, 0.09);
+            --radius: 12px;
         }
 
-        /* --- Reset & Base Styles --- */
         * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
-            scroll-behavior: smooth; /* Tambahan agar scroll navigasi halus */
         }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--bg-light);
-            color: var(--text-main);
+            font-family: "Inter", sans-serif;
+            color: var(--ink);
+            background: var(--surface);
             line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
         }
+
         a {
+            color: inherit;
             text-decoration: none;
         }
-        .container {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 0 24px;
+
+        button,
+        input,
+        select {
+            font: inherit;
         }
 
-        /* --- Header & Navigasi --- */
-        header {
-            background-color: var(--white);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* Shadow dipertegas */
+        .container {
+            width: min(1180px, calc(100% - 48px));
+            margin-inline: auto;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            color: var(--teal-dark);
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.13em;
+            text-transform: uppercase;
+        }
+
+        .eyebrow::before {
+            content: "";
+            width: 22px;
+            height: 1px;
+            background: currentColor;
+        }
+
+        /* Header */
+        .site-header {
             position: sticky;
             top: 0;
-            z-index: 100;
-            padding: 12px 0;
-        }
-        .header-container {
-            display: flex;
-            align-items: center;
-            justify-content: space-between; /* Memisahkan logo dan menu navigasi */
-        }
-        .header-brand {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-        }
-        .header-logo {
-            height: 55px;
-            width: auto;
-        }
-        .header-text h1 {
-            font-size: 1.25rem;
-            color: var(--primary-dark);
-            font-weight: 700;
-            letter-spacing: 0.5px;
-        }
-        .header-text p {
-            font-size: 0.8rem;
-            color: var(--text-muted);
-            margin-top: 2px;
-        }
-        
-        /* Menu Navigasi */
-        .header-nav {
-            display: flex;
-            align-items: center;
-            gap: 24px;
-        }
-        .header-nav a {
-            color: var(--text-main);
-            font-weight: 500;
-            font-size: 0.95rem;
-            transition: color 0.2s ease;
-        }
-        .header-nav a:hover {
-            color: var(--primary-light);
-        }
-        .header-nav .nav-btn {
-            background-color: var(--primary-light);
-            color: var(--white);
-            padding: 8px 20px;
-            border-radius: 20px;
-            font-weight: 600;
-            transition: all 0.2s ease;
-        }
-        .header-nav .nav-btn:hover {
-            background-color: var(--primary-dark);
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            z-index: 50;
+            background: rgba(245, 250, 250, 0.94);
+            border-bottom: 1px solid rgba(191, 210, 214, 0.7);
+            backdrop-filter: blur(14px);
         }
 
-        /* --- Hero Section --- */
-        .hero {
-            text-align: center;
-            padding: 100px 20px;
-            background-color: #F3F4F6; 
-            background-image: radial-gradient(#D1D5DB 2px, transparent 2px);
-            background-size: 24px 24px;
-            background-position: center;
+        .nav-wrap {
+            min-height: 76px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 28px;
         }
-        .hero-content {
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            min-width: max-content;
+        }
+
+        .brand-mark {
+            width: 42px;
+            height: 42px;
+            display: grid;
+            place-items: center;
+            border: 1px solid var(--line-strong);
+            border-radius: 10px;
+            background: var(--surface);
+        }
+
+        .brand-mark img {
+            width: 30px;
+            height: 34px;
+            object-fit: contain;
+        }
+
+        .brand-copy strong {
+            display: block;
+            font-size: 1rem;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+        }
+
+        .brand-copy span {
+            display: block;
+            margin-top: 3px;
+            color: var(--muted);
+            font-size: 0.72rem;
+        }
+
+        .nav-center,
+        .nav-actions {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-center {
+            gap: 28px;
+            margin-left: auto;
+        }
+
+        .nav-center a {
+            color: var(--ink-soft);
+            font-size: 0.88rem;
+            font-weight: 500;
+            transition: color 160ms ease;
+        }
+
+        .nav-center a:hover {
+            color: var(--teal-dark);
+        }
+
+        .nav-actions {
+            gap: 10px;
+        }
+
+        .nav-link-button,
+        .nav-primary,
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 42px;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: 160ms ease;
+        }
+
+        .nav-link-button {
+            padding: 0 16px;
+            border: 1px solid var(--line-strong);
+            background: transparent;
+            font-size: 0.82rem;
+        }
+
+        .nav-primary {
+            padding: 0 18px;
+            background: var(--teal);
+            color: var(--surface);
+            font-size: 0.82rem;
+            border: 1px solid var(--teal);
+        }
+
+        .nav-link-button:hover,
+        .btn-secondary:hover {
+            border-color: var(--teal-dark);
+            color: var(--teal-dark);
+        }
+
+        .nav-primary:hover,
+        .btn-primary:hover {
+            background: var(--teal-dark);
+            border-color: var(--teal-dark);
+        }
+
+        /* Hero */
+        .hero {
+            position: relative;
+            overflow: hidden;
+            background: var(--mist);
+            padding: 86px 0 154px;
+        }
+
+        .hero::after {
+            content: "";
+            position: absolute;
+            top: 28px;
+            right: -110px;
+            width: 430px;
+            height: 560px;
+            opacity: 0.55;
+            transform: rotate(0deg);
+            background: repeating-linear-gradient(
+                135deg,
+                transparent 0 38px,
+                rgba(33, 143, 157, 0.08) 38px 76px
+            );
+            pointer-events: none;
+        }
+
+        .hero-grid {
             position: relative;
             z-index: 1;
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) minmax(430px, 0.9fr);
+            align-items: center;
+            gap: 88px;
         }
-        .hero h2 {
-            font-size: 2.25rem;
-            color: var(--primary-dark);
+
+        .hero h1 {
+            max-width: 690px;
+            margin-top: 22px;
+            color: var(--ink);
+            font-size: clamp(2.9rem, 5vw, 5rem);
+            line-height: 1.02;
+            letter-spacing: -0.055em;
             font-weight: 700;
-            max-width: 800px;
-            margin: 0 auto 16px;
-            line-height: 1.3;
         }
-        .hero p {
-            font-size: 1.125rem;
-            color: var(--text-muted);
-            max-width: 700px;
-            margin: 0 auto 32px;
-        }
-        
-        /* --- Style Tombol (Buttons) --- */
-        .btn {
-            display: inline-block;
-            background-color: var(--primary-light);
-            color: var(--white);
-            padding: 12px 28px;
-            border-radius: 30px; 
-            font-weight: 600;
+
+        .hero-description {
+            max-width: 610px;
+            margin-top: 24px;
+            color: var(--ink-soft);
             font-size: 1rem;
-            border: none;
-            cursor: pointer;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
-            transition: all 0.2s ease;
-        }
-        .btn:hover {
-            background-color: var(--primary-dark);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); 
-            transform: translateY(-2px); 
-        }
-        .btn-outline {
-            background-color: var(--white);
-            color: var(--primary-dark);
-            border: 1px solid var(--primary-dark);
-            text-align: center;
-            display: block;
-            width: 100%;
-        }
-        .btn-outline:hover {
-            background-color: var(--primary-dark);
-            color: var(--white);
-        }
-        .btn-submit {
-            width: 100%;
-            margin-top: 10px;
+            line-height: 1.8;
         }
 
-        /* --- Fitur / Cards Section --- */
-        .features {
-            padding: 80px 0;
-            background-color: var(--bg-light);
+        .hero-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-top: 30px;
         }
-        .section-title {
-            text-align: center;
-            font-size: 1.75rem;
-            color: var(--primary-dark);
-            margin-bottom: 40px;
+
+        .btn {
+            gap: 9px;
+            min-height: 48px;
+            padding: 0 22px;
+            border: 1px solid transparent;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: var(--teal);
+            color: var(--surface);
+        }
+
+        .btn-secondary {
+            background: var(--surface);
+            color: var(--ink);
+            border-color: var(--line-strong);
+        }
+
+        .btn svg {
+            width: 17px;
+            height: 17px;
+        }
+
+        .hero-meta {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 18px;
+            margin-top: 38px;
+            color: var(--muted);
+            font-size: 0.78rem;
+            font-weight: 600;
+        }
+
+        .hero-meta span {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .hero-meta span::before {
+            content: "";
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--teal);
+        }
+
+        /* Hero preview */
+        .preview-wrap {
+            position: relative;
+            min-height: 440px;
+        }
+
+        .preview-panel {
+            position: absolute;
+            left: 18px;
+            top: 44px;
+            width: min(100%, 395px);
+            padding: 20px;
+            border: 1px solid rgba(216, 230, 232, 0.9);
+            border-radius: 14px;
+            background: var(--surface);
+            box-shadow: var(--shadow);
+        }
+
+        .preview-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 18px;
+            padding-bottom: 18px;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .preview-user {
+            display: flex;
+            align-items: center;
+            gap: 11px;
+        }
+
+        .preview-avatar {
+            width: 38px;
+            height: 38px;
+            display: grid;
+            place-items: center;
+            border-radius: 9px;
+            color: var(--surface);
+            background: var(--teal);
+            font-size: 0.8rem;
             font-weight: 700;
         }
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 24px;
-        }
-        .card {
-            background-color: var(--white);
-            padding: 24px;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
-            border: 1px solid #E5E7EB;
-            transition: transform 0.2s ease;
-        }
-        .card:hover {
-            transform: translateY(-3px);
-        }
-        .card-icon {
-            font-size: 2rem;
-            margin-bottom: 16px;
-            display: inline-block;
-        }
-        .card h3 {
-            font-size: 1.125rem;
-            color: var(--primary-dark);
-            margin-bottom: 12px;
-            font-weight: 600;
-        }
-        .card p {
-            font-size: 0.95rem;
-            color: var(--text-muted);
+
+        .preview-user strong,
+        .preview-user small {
+            display: block;
         }
 
-        /* --- Gabungan Section: Download & Upload --- */
-        .upload-section {
-            padding: 80px 0;
-            background-color: var(--white);
+        .preview-user strong {
+            font-size: 0.83rem;
         }
-        .combined-container {
+
+        .preview-user small {
+            color: var(--muted);
+            font-size: 0.68rem;
+            margin-top: 1px;
+        }
+
+        .status-pill {
+            padding: 6px 9px;
+            border: 1px solid #b8dedd;
+            border-radius: 999px;
+            color: var(--teal-dark);
+            background: #effafa;
+            font-size: 0.65rem;
+            font-weight: 700;
+        }
+
+        .preview-summary {
+            padding: 20px 0 16px;
+        }
+
+        .preview-summary span,
+        .preview-summary strong {
+            display: block;
+        }
+
+        .preview-summary span {
+            color: var(--muted);
+            font-size: 0.69rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+
+        .preview-summary strong {
+            margin-top: 5px;
+            font-size: 1.55rem;
+            line-height: 1.2;
+            letter-spacing: -0.035em;
+        }
+
+        .preview-file {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 14px;
+            padding: 13px;
+            border: 1px solid var(--line);
+            border-radius: 9px;
+            background: #fbfdfd;
+        }
+
+        .file-main {
+            display: flex;
+            align-items: center;
+            gap: 11px;
+            min-width: 0;
+        }
+
+        .file-icon {
+            width: 34px;
+            height: 34px;
             display: grid;
-            grid-template-columns: 1fr 1.25fr;
-            gap: 40px;
-            align-items: start;
-        }
-        .template-box {
-            background-color: #EFF6FF;
-            border: 1px solid #BFDBFE;
+            place-items: center;
             border-radius: 8px;
-            padding: 32px;
+            color: var(--teal-dark);
+            background: var(--teal-pale);
         }
-        .template-box h3 {
-            color: var(--primary-dark);
-            font-size: 1.25rem;
-            margin-bottom: 12px;
+
+        .file-icon svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        .file-copy {
+            min-width: 0;
+        }
+
+        .file-copy strong,
+        .file-copy small {
+            display: block;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .file-copy strong {
+            font-size: 0.77rem;
+        }
+
+        .file-copy small {
+            margin-top: 2px;
+            color: var(--muted);
+            font-size: 0.66rem;
+        }
+
+        .file-check {
+            width: 22px;
+            height: 22px;
+            display: grid;
+            place-items: center;
+            border-radius: 50%;
+            color: var(--surface);
+            background: var(--teal);
+        }
+
+        .file-check svg {
+            width: 12px;
+            height: 12px;
+        }
+
+        .preview-button {
+            width: 100%;
+            min-height: 42px;
+            margin-top: 12px;
+            border: 0;
+            border-radius: 8px;
+            color: var(--surface);
+            background: var(--ink);
+            font-size: 0.77rem;
             font-weight: 600;
         }
-        .template-box p {
-            color: var(--text-muted);
-            margin-bottom: 24px;
+
+        .document-card {
+            position: absolute;
+            right: 0;
+            top: 2px;
+            width: 210px;
+            min-height: 150px;
+            padding: 18px;
+            border-radius: 14px;
+            color: var(--surface);
+            background: var(--teal);
+            box-shadow: 0 18px 44px rgba(15, 113, 128, 0.2);
+        }
+
+        .document-card::after {
+            content: "";
+            position: absolute;
+            inset: auto 0 0;
+            height: 42px;
+            border-radius: 0 0 14px 14px;
+            background: var(--ink);
+        }
+
+        .document-card small,
+        .document-card strong,
+        .document-card span {
+            position: relative;
+            z-index: 1;
+            display: block;
+        }
+
+        .document-card small {
+            font-size: 0.67rem;
+            opacity: 0.82;
+        }
+
+        .document-card strong {
+            margin-top: 3px;
+            font-size: 1.15rem;
+            letter-spacing: 0.02em;
+        }
+
+        .document-card span {
+            margin-top: 54px;
+            font-size: 0.73rem;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+        }
+
+        /* Feature panel */
+        .feature-shell {
+            position: relative;
+            z-index: 5;
+            margin-top: -86px;
+        }
+
+        .feature-panel {
+            padding: 44px 46px 40px;
+            border: 1px solid rgba(216, 230, 232, 0.9);
+            border-radius: 14px;
+            background: var(--surface);
+            box-shadow: 0 26px 70px rgba(8, 47, 58, 0.08);
+        }
+
+        .feature-heading {
+            display: grid;
+            grid-template-columns: minmax(0, 1.1fr) minmax(260px, 0.72fr);
+            gap: 64px;
+            align-items: end;
+        }
+
+        .feature-heading h2 {
+            max-width: 590px;
+            margin-top: 10px;
+            font-size: clamp(2rem, 3.5vw, 3.15rem);
+            line-height: 1.12;
+            letter-spacing: -0.045em;
+        }
+
+        .feature-heading p {
+            color: var(--muted);
+            font-size: 0.89rem;
+            line-height: 1.75;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            margin-top: 42px;
+            padding-top: 34px;
+            border-top: 1px solid var(--line);
+        }
+
+        .feature-item {
+            min-width: 0;
+        }
+
+        .feature-icon {
+            width: 34px;
+            height: 34px;
+            color: var(--teal-dark);
+        }
+
+        .feature-icon svg {
+            width: 100%;
+            height: 100%;
+            stroke-width: 1.5;
+        }
+
+        .feature-item h3 {
+            margin-top: 17px;
             font-size: 0.95rem;
+            letter-spacing: -0.02em;
         }
-        .form-container {
-            background-color: var(--white);
-            padding: 40px;
-            border-radius: 8px;
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.025);
-            border: 1px solid #E5E7EB;
+
+        .feature-item p {
+            margin-top: 8px;
+            color: var(--muted);
+            font-size: 0.78rem;
+            line-height: 1.65;
         }
+
+        /* Upload service */
+        .upload-section {
+            padding: 112px 0 104px;
+        }
+
+        .upload-intro {
+            max-width: 680px;
+            margin: 0 auto 50px;
+            text-align: center;
+        }
+
+        .upload-intro .eyebrow::before {
+            display: none;
+        }
+
+        .upload-intro h2 {
+            margin-top: 12px;
+            font-size: clamp(2.2rem, 4vw, 3.5rem);
+            line-height: 1.1;
+            letter-spacing: -0.05em;
+        }
+
+        .upload-intro p {
+            margin-top: 16px;
+            color: var(--muted);
+        }
+
+        .service-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 0.8fr) minmax(520px, 1.2fr);
+            gap: 28px;
+            align-items: stretch;
+        }
+
+        .service-info,
+        .form-panel {
+            border: 1px solid var(--line);
+            border-radius: var(--radius);
+            background: var(--surface);
+        }
+
+        .service-info {
+            padding: 36px;
+            background: #f5fafb;
+        }
+
+        .service-info h3 {
+            margin-top: 13px;
+            font-size: 1.55rem;
+            line-height: 1.25;
+            letter-spacing: -0.035em;
+        }
+
+        .service-info > p {
+            margin-top: 14px;
+            color: var(--muted);
+            font-size: 0.9rem;
+        }
+
+        .step-list {
+            display: grid;
+            gap: 0;
+            margin: 30px 0;
+            border-top: 1px solid var(--line);
+        }
+
+        .step {
+            display: grid;
+            grid-template-columns: 42px 1fr;
+            gap: 14px;
+            padding: 18px 0;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .step-number {
+            color: var(--teal-dark);
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+        }
+
+        .step strong,
+        .step span {
+            display: block;
+        }
+
+        .step strong {
+            font-size: 0.88rem;
+        }
+
+        .step span {
+            margin-top: 4px;
+            color: var(--muted);
+            font-size: 0.77rem;
+            line-height: 1.55;
+        }
+
+        .download-btn {
+            width: 100%;
+        }
+
+        .form-panel {
+            padding: 34px 36px 36px;
+            box-shadow: 0 18px 48px rgba(8, 47, 58, 0.06);
+        }
+
+        .form-head {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 20px;
+            padding-bottom: 24px;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .form-head h3 {
+            font-size: 1.35rem;
+            letter-spacing: -0.03em;
+        }
+
+        .form-head p {
+            margin-top: 5px;
+            color: var(--muted);
+            font-size: 0.8rem;
+        }
+
+        .secure-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            padding: 7px 10px;
+            border: 1px solid var(--line);
+            border-radius: 999px;
+            color: var(--muted);
+            background: #fbfdfd;
+            font-size: 0.68rem;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        .secure-badge svg {
+            width: 13px;
+            height: 13px;
+            color: var(--teal-dark);
+        }
+
+        form {
+            margin-top: 26px;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px;
+        }
+
         .form-group {
-            margin-bottom: 20px;
+            margin-bottom: 18px;
         }
+
+        .form-group.full {
+            grid-column: 1 / -1;
+        }
+
         .form-group label {
             display: block;
-            font-weight: 500;
             margin-bottom: 8px;
-            color: var(--text-main);
-            font-size: 0.95rem;
+            color: var(--ink-soft);
+            font-size: 0.78rem;
+            font-weight: 600;
         }
+
         .form-control {
             width: 100%;
-            padding: 12px;
-            border: 1px solid #D1D5DB;
-            border-radius: 6px;
-            font-family: inherit;
-            font-size: 1rem;
-            color: var(--text-main);
-            background-color: var(--white);
-        }
-        .form-control:focus {
+            min-height: 48px;
+            padding: 0 13px;
+            border: 1px solid var(--line-strong);
+            border-radius: 8px;
             outline: none;
-            border-color: var(--primary-light);
-            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+            color: var(--ink);
+            background: var(--surface);
+            font-size: 0.84rem;
+            transition: border-color 160ms ease, box-shadow 160ms ease;
         }
-        input[type="file"] {
+
+        .form-control:hover {
+            border-color: #9dbbc0;
+        }
+
+        .form-control:focus {
+            border-color: var(--teal);
+            box-shadow: 0 0 0 3px rgba(33, 143, 157, 0.11);
+        }
+
+        input[type="file"].form-control {
+            min-height: auto;
             padding: 8px;
+            color: var(--muted);
         }
+
         input[type="file"]::file-selector-button {
-            background-color: var(--bg-gray);
-            border: 1px solid #D1D5DB;
-            padding: 8px 16px;
-            border-radius: 4px;
-            cursor: pointer;
+            min-height: 34px;
             margin-right: 12px;
-            font-family: inherit;
-            color: var(--text-main);
-        }
-        .form-note {
-            display: block;
-            text-align: center;
-            font-size: 0.85rem;
-            color: #EF4444; 
-            margin-top: 16px;
-            background-color: #FEF2F2;
-            padding: 10px;
+            padding: 0 13px;
+            border: 1px solid var(--line-strong);
             border-radius: 6px;
-        }
-
-        /* --- Footer (Diperkecil / Dirampingkan) --- */
-        footer {
-            background-color: var(--primary-dark);
-            color: var(--white);
-            text-align: center;
-            padding: 16px 20px; /* Padding atas & bawah dikurangi secara signifikan */
-        }
-        footer .org-title {
-            font-size: 1rem; /* Ukuran font sedikit dikecilkan */
+            color: var(--ink);
+            background: #f4f8f9;
+            font-size: 0.77rem;
             font-weight: 600;
-            margin-bottom: 2px;
-        }
-        footer .org-subtitle {
-            font-size: 0.9rem;
-            color: #E5E7EB;
-            margin-bottom: 10px;
-        }
-        footer .contact-info {
-            font-size: 0.85rem;
-            color: #D1D5DB;
-            margin: 0 auto 10px auto;
-            max-width: 650px;
-            line-height: 1.4;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 8px 0; /* Jarak padding kontak dirampingkan */
-        }
-        footer .copyright {
-            font-size: 0.8rem;
-            color: #9CA3AF;
-            margin-top: 4px;
+            cursor: pointer;
         }
 
-        /* --- Responsive Design --- */
-        @media (max-width: 768px) {
-            .header-container {
+        .form-note {
+            display: flex;
+            align-items: flex-start;
+            gap: 9px;
+            margin-top: 2px;
+            padding: 12px 13px;
+            border: 1px solid #c8e1e4;
+            border-radius: 8px;
+            color: var(--ink-soft);
+            background: #f3fafb;
+            font-size: 0.74rem;
+            line-height: 1.55;
+        }
+
+        .form-note svg {
+            width: 16px;
+            height: 16px;
+            flex: 0 0 auto;
+            color: var(--teal-dark);
+            margin-top: 1px;
+        }
+
+        .btn-submit {
+            width: 100%;
+            margin-top: 16px;
+        }
+
+        /* Footer */
+        .site-footer {
+            padding: 42px 0 30px;
+            color: #d8e8ea;
+            background: var(--ink);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 60px;
+            align-items: start;
+        }
+
+        .footer-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .footer-brand img {
+            width: 36px;
+            height: 42px;
+            object-fit: contain;
+            filter: saturate(0.85) brightness(1.1);
+        }
+
+        .footer-brand strong,
+        .footer-brand span {
+            display: block;
+        }
+
+        .footer-brand strong {
+            color: var(--surface);
+            font-size: 1rem;
+        }
+
+        .footer-brand span {
+            margin-top: 3px;
+            color: #a9c2c7;
+            font-size: 0.74rem;
+        }
+
+        .footer-contact {
+            display: grid;
+            gap: 8px;
+            color: #b6cbd0;
+            font-size: 0.78rem;
+            line-height: 1.6;
+        }
+
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            gap: 24px;
+            margin-top: 34px;
+            padding-top: 22px;
+            border-top: 1px solid rgba(216, 232, 234, 0.13);
+            color: #8faab0;
+            font-size: 0.7rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 980px) {
+            .nav-center {
+                display: none;
+            }
+
+            .hero-grid {
+                grid-template-columns: 1fr;
+                gap: 56px;
+            }
+
+            .hero-copy {
+                max-width: 720px;
+            }
+
+            .preview-wrap {
+                width: min(100%, 560px);
+                margin-inline: auto;
+            }
+
+            .feature-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .service-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .service-info {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                column-gap: 34px;
+                align-items: start;
+            }
+
+            .service-info .eyebrow,
+            .service-info h3,
+            .service-info > p {
+                grid-column: 1 / -1;
+            }
+
+            .step-list {
+                margin-bottom: 0;
+            }
+
+            .download-btn {
+                align-self: end;
+                margin-bottom: 1px;
+            }
+        }
+
+        @media (max-width: 720px) {
+            .container {
+                width: min(100% - 32px, 1180px);
+            }
+
+            .nav-wrap {
+                min-height: 68px;
+            }
+
+            .brand-copy span,
+            .nav-link-button {
+                display: none;
+            }
+
+            .hero {
+                padding: 64px 0 124px;
+            }
+
+            .hero h1 {
+                font-size: clamp(2.55rem, 12vw, 4.2rem);
+            }
+
+            .hero-actions {
+                align-items: stretch;
                 flex-direction: column;
-                gap: 16px;
             }
-            .header-nav {
+
+            .hero-actions .btn {
                 width: 100%;
-                justify-content: center;
-                gap: 16px;
-                flex-wrap: wrap;
             }
-            .hero { padding: 70px 20px; }
-            .hero h2 { font-size: 1.75rem; }
-            .hero p { font-size: 1rem; }
-            
-            .combined-container {
+
+            .preview-wrap {
+                min-height: 410px;
+            }
+
+            .preview-panel {
+                left: 0;
+                top: 64px;
+                width: calc(100% - 18px);
+            }
+
+            .document-card {
+                width: 180px;
+            }
+
+            .feature-panel {
+                padding: 32px 24px;
+            }
+
+            .feature-heading {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .feature-grid {
                 grid-template-columns: 1fr;
                 gap: 24px;
             }
-            .form-container { padding: 24px; }
+
+            .upload-section {
+                padding: 84px 0 80px;
+            }
+
+            .service-info {
+                display: block;
+                padding: 28px 24px;
+            }
+
+            .step-list {
+                margin-bottom: 24px;
+            }
+
+            .form-panel {
+                padding: 28px 22px;
+            }
+
+            .form-head {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .form-group.full {
+                grid-column: auto;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 26px;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 5px;
+            }
         }
     </style>
 </head>
 <body>
+    <header class="site-header">
+        <div class="container nav-wrap">
+            <a href="#beranda" class="brand" aria-label="SILAKIP Kabupaten Malaka">
+                <span class="brand-mark">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/d/d4/Lambang_Kabupaten_Malaka.png" alt="Logo Kabupaten Malaka">
+                </span>
+                <span class="brand-copy">
+                    <strong>SILAKIP</strong>
+                    <span>Kabupaten Malaka</span>
+                </span>
+            </a>
 
-    <header>
-        <div class="container header-container">
-            <div class="header-brand">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/d/d4/Lambang_Kabupaten_Malaka.png" alt="Logo Kabupaten Malaka" class="header-logo">
-                <div class="header-text">
-                    <h1>SILAKIP</h1>
-                    <p>Format Seragam, Data Lengkap, Laporan Tepat Waktu.</p>
-                </div>
-            </div>
-            
-            <nav class="header-nav">
+            <nav class="nav-center" aria-label="Navigasi utama">
                 <a href="#beranda">Beranda</a>
                 <a href="#fitur">Keunggulan</a>
-                <a href="#area-upload" class="nav-btn">Upload Dokumen</a>
+                <a href="#area-upload">Layanan Dokumen</a>
             </nav>
+
+            <div class="nav-actions">
+                <a class="nav-link-button" href="#template">Template</a>
+                <a class="nav-primary" href="#area-upload">Upload Dokumen</a>
+            </div>
         </div>
     </header>
 
-    <section id="beranda" class="hero">
-        <div class="container hero-content">
-            <h2>Sistem Informasi Layanan Data Akuntabilitas Kinerja Instansi Pemerintah</h2>
-            <p>SILAKIP membantu perangkat daerah dalam menyampaikan data pendukung LAKIP secara digital sehingga proses pengumpulan data menjadi lebih cepat, seragam, terdokumentasi, dan mudah dipantau.</p>
-            <a href="#area-upload" class="btn">Upload Dokumen</a>
-        </div>
-    </section>
+    <main>
+        <section id="beranda" class="hero">
+            <div class="container hero-grid">
+                <div class="hero-copy">
+                    <span class="eyebrow">Layanan Akuntabilitas Kinerja</span>
+                    <h1>Dokumen kinerja, terkumpul lebih rapi.</h1>
+                    <p class="hero-description">
+                        SILAKIP membantu perangkat daerah menyampaikan dokumen pendukung LAKIP dalam satu alur yang seragam, terdokumentasi, dan mudah dipantau oleh Bagian Organisasi.
+                    </p>
 
-    <section id="fitur" class="features">
-        <div class="container">
-            <h2 class="section-title">Mengapa Menggunakan SILAKIP?</h2>
-            <div class="grid">
-                <div class="card">
-                    <span class="card-icon">📂</span>
-                    <h3>Data Terpusat</h3>
-                    <p>Seluruh dokumen tersimpan dalam satu tempat sehingga mudah dicari dan dikelola kapan saja dibutuhkan.</p>
+                    <div class="hero-actions">
+                        <a href="#area-upload" class="btn btn-primary">
+                            Upload Dokumen
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <path d="M5 12h14"></path>
+                                <path d="m13 6 6 6-6 6"></path>
+                            </svg>
+                        </a>
+                        <a href="#template" class="btn btn-secondary">Download Template</a>
+                    </div>
+
+                    <div class="hero-meta" aria-label="Keunggulan singkat">
+                        <span>Format seragam</span>
+                        <span>Arsip terpusat</span>
+                        <span>Status mudah dipantau</span>
+                    </div>
                 </div>
-                <div class="card">
-                    <span class="card-icon">📄</span>
-                    <h3>Format Seragam</h3>
-                    <p>Seluruh OPD menggunakan format yang sama sehingga memudahkan proses penyusunan LAKIP.</p>
-                </div>
-                <div class="card">
-                    <span class="card-icon">⏱</span>
-                    <h3>Lebih Cepat</h3>
-                    <p>Proses pengumpulan dokumen menjadi lebih efisien dibandingkan pengiriman melalui berbagai media konvensional.</p>
-                </div>
-                <div class="card">
-                    <span class="card-icon">✅</span>
-                    <h3>Mudah Dipantau</h3>
-                    <p>Status pengumpulan dokumen dari masing-masing instansi dapat dimonitor dengan lebih mudah dan transparan.</p>
+
+                <div class="preview-wrap" aria-label="Ilustrasi pengiriman dokumen SILAKIP">
+                    <div class="preview-panel">
+                        <div class="preview-top">
+                            <div class="preview-user">
+                                <div class="preview-avatar">OPD</div>
+                                <div>
+                                    <strong>Dinas Pendidikan</strong>
+                                    <small>Kabupaten Malaka</small>
+                                </div>
+                            </div>
+                            <span class="status-pill">Siap dikirim</span>
+                        </div>
+
+                        <div class="preview-summary">
+                            <span>Dokumen dipilih</span>
+                            <strong>Laporan Kinerja 2026</strong>
+                        </div>
+
+                        <div class="preview-file">
+                            <div class="file-main">
+                                <div class="file-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                                        <path d="M14 2v6h6"></path>
+                                        <path d="M8 13h8"></path>
+                                        <path d="M8 17h5"></path>
+                                    </svg>
+                                </div>
+                                <div class="file-copy">
+                                    <strong>LKJIP_Dikbud_2026.xlsx</strong>
+                                    <small>Format sesuai template SILAKIP</small>
+                                </div>
+                            </div>
+                            <span class="file-check">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                    <path d="m5 12 4 4L19 6"></path>
+                                </svg>
+                            </span>
+                        </div>
+
+                        <button class="preview-button" type="button" tabindex="-1">Kirim ke Bagian Organisasi</button>
+                    </div>
+
+                    <div class="document-card" aria-hidden="true">
+                        <small>Dokumen</small>
+                        <strong>2026 / LKJIP</strong>
+                        <span>SILAKIP</span>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section id="area-upload" class="upload-section">
-        <div class="container">
-            <h2 class="section-title">Layanan Dokumen SILAKIP</h2>
-            
-            <div class="combined-container">
-                
-                <div class="template-box">
-                    <h3>Template Dokumen Excel</h3>
-                    <p>Sebelum melakukan upload, setiap OPD diwajibkan mengunduh dan menggunakan format Excel yang telah disediakan di bawah ini demi memastikan keseragaman format data.</p>
-                    <a href="#" class="btn btn-outline">Download Template Excel</a>
+        <section id="fitur" class="feature-shell">
+            <div class="container">
+                <div class="feature-panel">
+                    <div class="feature-heading">
+                        <div>
+                            <span class="eyebrow">Satu sistem, satu standar</span>
+                            <h2>Pengumpulan data yang lebih tertib untuk seluruh OPD.</h2>
+                        </div>
+                        <p>
+                            Alur sederhana untuk mengurangi perbedaan format, dokumen tercecer, dan keterlambatan penyampaian data pendukung akuntabilitas kinerja.
+                        </p>
+                    </div>
+
+                    <div class="feature-grid">
+                        <article class="feature-item">
+                            <div class="feature-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                    <path d="M3 7h5l2 2h11v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                                    <path d="M3 7V5a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2"></path>
+                                </svg>
+                            </div>
+                            <h3>Data Terpusat</h3>
+                            <p>Dokumen terkumpul dalam satu layanan sehingga lebih mudah dicari, diperiksa, dan dikelola.</p>
+                        </article>
+
+                        <article class="feature-item">
+                            <div class="feature-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                                    <path d="M14 2v6h6"></path>
+                                    <path d="M8 13h8"></path>
+                                    <path d="M8 17h8"></path>
+                                </svg>
+                            </div>
+                            <h3>Format Seragam</h3>
+                            <p>Template yang sama membantu menjaga struktur data tetap konsisten pada setiap perangkat daerah.</p>
+                        </article>
+
+                        <article class="feature-item">
+                            <div class="feature-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                    <circle cx="12" cy="12" r="9"></circle>
+                                    <path d="M12 7v5l3 2"></path>
+                                </svg>
+                            </div>
+                            <h3>Lebih Cepat</h3>
+                            <p>Pengiriman langsung melalui formulir mengurangi proses berulang melalui media yang berbeda-beda.</p>
+                        </article>
+
+                        <article class="feature-item">
+                            <div class="feature-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                                    <path d="m9 12 2 2 4-4"></path>
+                                </svg>
+                            </div>
+                            <h3>Mudah Dipantau</h3>
+                            <p>Status dokumen lebih jelas sehingga tindak lanjut dapat dilakukan secara cepat dan transparan.</p>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="area-upload" class="upload-section">
+            <div class="container">
+                <div class="upload-intro">
+                    <span class="eyebrow">Layanan Dokumen</span>
+                    <h2>Siapkan template, lalu kirim dokumen.</h2>
+                    <p>Gunakan format resmi SILAKIP agar dokumen setiap OPD dapat diperiksa dan diolah dengan lebih mudah.</p>
                 </div>
 
-                <div class="form-container">
-                    <form action="#" method="POST" enctype="multipart/form-data">
-                        
-                        <div class="form-group">
-                            <label for="opd">Nama OPD</label>
-                            <select id="opd" name="opd" class="form-control" required>
-                                <option value="" disabled selected>-- Pilih Perangkat Daerah --</option>
-                                <option value="Dinas Pertanian">Dinas Pertanian</option>
-                                <option value="Badan Pengelolaan Keuangan Pendapatan dan Aset Daerah">Badan Pengelolaan Keuangan Pendapatan dan Aset Daerah</option>
-                                <option value="Dinas Transmigrasi dan Tenaga Kerja">Dinas Transmigrasi dan Tenaga Kerja</option>
-                                <option value="Bagian Ekonomi">Bagian Ekonomi</option>
-                                <option value="Dinas Kesehatan">Dinas Kesehatan</option>
-                                <option value="Dinas Pengendalian Penduduk, Keluarga Berencana, Pemberdayaan Perempuan dan Perlindungan Anak">Dinas Pengendalian Penduduk, Keluarga Berencana, Pemberdayaan Perempuan dan Perlindungan Anak</option>
-                                <option value="Dinas Kependudukan dan Pencatatan Sipil">Dinas Kependudukan dan Pencatatan Sipil</option>
-                                <option value="Dinas Pekerjaan Umum dan Perumahan Rakyat">Dinas Pekerjaan Umum dan Perumahan Rakyat</option>
-                                <option value="Dinas Lingkungan Hidup">Dinas Lingkungan Hidup</option>
-                                <option value="Badan Penanggulangan Bencana Daerah">Badan Penanggulangan Bencana Daerah</option>
-                                <option value="Dinas Pendidikan dan Kebudayaan">Dinas Pendidikan dan Kebudayaan</option>
-                                <option value="Bagian Organisasi">Bagian Organisasi</option>
-                                <option value="Badan Perencanaan Pembangunan, Riset dan Inovasi Daerah">Badan Perencanaan Pembangunan, Riset dan Inovasi Daerah</option>
-                                <option value="Badan Kepegawaian dan Pengembangan Sumber Daya Manusia">Badan Kepegawaian dan Pengembangan Sumber Daya Manusia</option>
-                                <option value="Dinas Pemuda dan Olahraga">Dinas Pemuda dan Olahraga</option>
-                            </select>
+                <div class="service-grid">
+                    <aside id="template" class="service-info">
+                        <span class="eyebrow">Sebelum mengunggah</span>
+                        <h3>Gunakan template Excel yang telah disediakan.</h3>
+                        <p>Template membantu memastikan kolom, struktur, dan isi data tetap seragam untuk seluruh perangkat daerah.</p>
+
+                        <div class="step-list">
+                            <div class="step">
+                                <span class="step-number">01</span>
+                                <div>
+                                    <strong>Unduh template</strong>
+                                    <span>Simpan file template resmi SILAKIP pada perangkat Anda.</span>
+                                </div>
+                            </div>
+                            <div class="step">
+                                <span class="step-number">02</span>
+                                <div>
+                                    <strong>Lengkapi data</strong>
+                                    <span>Isi data sesuai petunjuk tanpa mengubah susunan kolom.</span>
+                                </div>
+                            </div>
+                            <div class="step">
+                                <span class="step-number">03</span>
+                                <div>
+                                    <strong>Kirim dokumen</strong>
+                                    <span>Pilih OPD, jenis dokumen, tahun, lalu unggah file.</span>
+                                </div>
+                            </div>
                         </div>
 
-                        <div class="form-group">
-                            <label for="jenis_dokumen">Jenis Dokumen</label>
-                            <select id="jenis_dokumen" name="jenis_dokumen" class="form-control" required>
-                                <option value="" disabled selected>-- Pilih Jenis Dokumen --</option>
-                                <option value="Perjanjian Kinerja">Perjanjian Kinerja</option>
-                                <option value="Rencana Aksi">Rencana Aksi</option>
-                                <option value="IKU">Indikator Kinerja Utama (IKU)</option>
-                                <option value="Laporan Kinerja">Laporan Kinerja</option>
-                            </select>
+                        <a href="#" class="btn btn-secondary download-btn">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <path d="M12 3v12"></path>
+                                <path d="m7 10 5 5 5-5"></path>
+                                <path d="M5 21h14"></path>
+                            </svg>
+                            Download Template Excel
+                        </a>
+                    </aside>
+
+                    <div class="form-panel">
+                        <div class="form-head">
+                            <div>
+                                <h3>Form Pengiriman Dokumen</h3>
+                                <p>Lengkapi informasi dokumen sebelum dikirim.</p>
+                            </div>
+                            <span class="secure-badge">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                    <rect x="5" y="10" width="14" height="11" rx="2"></rect>
+                                    <path d="M8 10V7a4 4 0 0 1 8 0v3"></path>
+                                </svg>
+                                Pengiriman aman
+                            </span>
                         </div>
 
-                        <div class="form-group">
-                            <label for="tahun">Tahun</label>
-                            <select id="tahun" name="tahun" class="form-control" required>
-                                <option value="" disabled selected>-- Pilih Tahun --</option>
-                                <option value="2025">2025</option>
-                                <option value="2026">2026</option>
-                            </select>
-                        </div>
+                        <form action="#" method="POST" enctype="multipart/form-data">
+                            <div class="form-grid">
+                                <div class="form-group full">
+                                    <label for="opd">Nama OPD</label>
+                                    <select id="opd" name="opd" class="form-control" required>
+                                        <option value="" disabled selected>-- Pilih Perangkat Daerah --</option>
+                                        <option value="Dinas Pertanian">Dinas Pertanian</option>
+                                        <option value="Badan Pengelolaan Keuangan Pendapatan dan Aset Daerah">Badan Pengelolaan Keuangan Pendapatan dan Aset Daerah</option>
+                                        <option value="Dinas Transmigrasi dan Tenaga Kerja">Dinas Transmigrasi dan Tenaga Kerja</option>
+                                        <option value="Bagian Ekonomi">Bagian Ekonomi</option>
+                                        <option value="Dinas Kesehatan">Dinas Kesehatan</option>
+                                        <option value="Dinas Pengendalian Penduduk, Keluarga Berencana, Pemberdayaan Perempuan dan Perlindungan Anak">Dinas Pengendalian Penduduk, Keluarga Berencana, Pemberdayaan Perempuan dan Perlindungan Anak</option>
+                                        <option value="Dinas Kependudukan dan Pencatatan Sipil">Dinas Kependudukan dan Pencatatan Sipil</option>
+                                        <option value="Dinas Pekerjaan Umum dan Perumahan Rakyat">Dinas Pekerjaan Umum dan Perumahan Rakyat</option>
+                                        <option value="Dinas Lingkungan Hidup">Dinas Lingkungan Hidup</option>
+                                        <option value="Badan Penanggulangan Bencana Daerah">Badan Penanggulangan Bencana Daerah</option>
+                                        <option value="Dinas Pendidikan dan Kebudayaan">Dinas Pendidikan dan Kebudayaan</option>
+                                        <option value="Bagian Organisasi">Bagian Organisasi</option>
+                                        <option value="Badan Perencanaan Pembangunan, Riset dan Inovasi Daerah">Badan Perencanaan Pembangunan, Riset dan Inovasi Daerah</option>
+                                        <option value="Badan Kepegawaian dan Pengembangan Sumber Daya Manusia">Badan Kepegawaian dan Pengembangan Sumber Daya Manusia</option>
+                                        <option value="Dinas Pemuda dan Olahraga">Dinas Pemuda dan Olahraga</option>
+                                    </select>
+                                </div>
 
-                        <div class="form-group">
-                            <label for="file_upload">Upload Dokumen</label>
-                            <input type="file" id="file_upload" name="file_upload" class="form-control" accept=".xlsx, .xls" required>
-                        </div>
+                                <div class="form-group">
+                                    <label for="jenis_dokumen">Jenis Dokumen</label>
+                                    <select id="jenis_dokumen" name="jenis_dokumen" class="form-control" required>
+                                        <option value="" disabled selected>-- Pilih Jenis Dokumen --</option>
+                                        <option value="Perjanjian Kinerja">Perjanjian Kinerja</option>
+                                        <option value="Rencana Aksi">Rencana Aksi</option>
+                                        <option value="IKU">Indikator Kinerja Utama (IKU)</option>
+                                        <option value="Laporan Kinerja">Laporan Kinerja</option>
+                                    </select>
+                                </div>
 
-                        <button type="submit" class="btn btn-submit">Kirim Dokumen</button>
-                        
-                        <span class="form-note">
-                            *Pastikan dokumen telah menggunakan format template SILAKIP sebelum diunggah.
-                        </span>
-                    </form>
+                                <div class="form-group">
+                                    <label for="tahun">Tahun</label>
+                                    <select id="tahun" name="tahun" class="form-control" required>
+                                        <option value="" disabled selected>-- Pilih Tahun --</option>
+                                        <option value="2025">2025</option>
+                                        <option value="2026">2026</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group full">
+                                    <label for="file_upload">Upload Dokumen</label>
+                                    <input type="file" id="file_upload" name="file_upload" class="form-control" accept=".xlsx, .xls" required>
+                                </div>
+                            </div>
+
+                            <div class="form-note">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                    <circle cx="12" cy="12" r="9"></circle>
+                                    <path d="M12 11v5"></path>
+                                    <path d="M12 8h.01"></path>
+                                </svg>
+                                <span>Pastikan dokumen menggunakan template SILAKIP dan berformat Excel (.xlsx atau .xls).</span>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary btn-submit">Kirim Dokumen</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/d/d4/Lambang_Kabupaten_Malaka.png" alt="Logo Kabupaten Malaka">
+                    <div>
+                        <strong>Bagian Organisasi</strong>
+                        <span>Sekretariat Daerah Kabupaten Malaka</span>
+                    </div>
                 </div>
 
-            </div>
-        </div>
-    </section>
-
-    <footer>
-        <div class="container">
-            <p class="org-title">Bagian Organisasi</p>
-            <p class="org-subtitle">Sekretariat Daerah Kabupaten Malaka</p>
-            
-            <div class="contact-info">
-                <p>📍 Jl. Jenderal Sudirman, Betun, Kec. Malaka Tengah, Kabupaten Malaka, Nusa Tenggara Timur</p>
-                <p>✉️ Email: organisasi@malakakab.go.id &nbsp; | &nbsp; 📞 Telp: (0389) 123456</p>
+                <div class="footer-contact">
+                    <p>Jl. Jenderal Sudirman, Betun, Kec. Malaka Tengah, Kabupaten Malaka, Nusa Tenggara Timur</p>
+                    <p>organisasi@malakakab.go.id &nbsp;·&nbsp; (0389) 123456</p>
+                </div>
             </div>
 
-            <p class="copyright">SILAKIP &copy; 2026</p>
+            <div class="footer-bottom">
+                <span>SILAKIP © 2026</span>
+                <span>Format seragam, data lengkap, laporan tepat waktu.</span>
+            </div>
         </div>
     </footer>
-
 </body>
 </html>
